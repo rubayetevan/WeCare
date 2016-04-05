@@ -11,7 +11,8 @@ public class Dashboard extends AppCompatActivity implements Communicator {
     FragmentManager fragmentManager;
     UserAccess userAccess;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         fragmentManager = getSupportFragmentManager();
@@ -19,7 +20,6 @@ public class Dashboard extends AppCompatActivity implements Communicator {
         userAccess.setCommunicator(this);
         FragmentTransaction transaction =fragmentManager.beginTransaction();
         transaction.add(R.id.dashBoard,userAccess,"userAccess");
-        //transaction.addToBackStack("userAccess");
         transaction.commit();
     }
 
@@ -28,7 +28,7 @@ public class Dashboard extends AppCompatActivity implements Communicator {
     public void information(String information)
     {
 
-        if (information == "new")
+        if (information.equalsIgnoreCase("new"))
         {
             RegistrationSelectionFragment registrationSelectionFragment = new RegistrationSelectionFragment();
             registrationSelectionFragment.setCommunicator(this);
@@ -37,7 +37,7 @@ public class Dashboard extends AppCompatActivity implements Communicator {
             transactionR.addToBackStack("registration");
             transactionR.commit();
         }
-        else if(information == "old")
+        else if(information.equalsIgnoreCase("old"))
         {
             LoginFragment loginFragment = new LoginFragment();
             FragmentTransaction transactionL =fragmentManager.beginTransaction();
@@ -45,7 +45,7 @@ public class Dashboard extends AppCompatActivity implements Communicator {
             transactionL.addToBackStack("login");
             transactionL.commit();
         }
-        else if (information == "child")
+        else if (information.equalsIgnoreCase("child"))
         {
             ChildRegistrationFragment childRegistrationFragment = new ChildRegistrationFragment();
             FragmentTransaction transactionC = fragmentManager.beginTransaction();
@@ -53,7 +53,7 @@ public class Dashboard extends AppCompatActivity implements Communicator {
             transactionC.addToBackStack("childRegistration");
             transactionC.commit();
         }
-        else if (information == "women")
+        else if (information.equalsIgnoreCase("women"))
         {
             WomenRegistrationFragments womenRegistrationFragments = new WomenRegistrationFragments();
             FragmentTransaction transactionW = fragmentManager.beginTransaction();
