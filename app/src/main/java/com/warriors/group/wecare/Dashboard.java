@@ -19,6 +19,7 @@ public class Dashboard extends AppCompatActivity implements Communicator {
         userAccess.setCommunicator(this);
         FragmentTransaction transaction =fragmentManager.beginTransaction();
         transaction.add(R.id.dashBoard,userAccess,"userAccess");
+        //transaction.addToBackStack("userAccess");
         transaction.commit();
     }
 
@@ -30,8 +31,10 @@ public class Dashboard extends AppCompatActivity implements Communicator {
         if (information == "new")
         {
             RegistrationSelectionFragment registrationSelectionFragment = new RegistrationSelectionFragment();
+            registrationSelectionFragment.setCommunicator(this);
             FragmentTransaction transactionR = fragmentManager.beginTransaction();
             transactionR.replace(R.id.dashBoard,registrationSelectionFragment,"registration");
+            transactionR.addToBackStack("registration");
             transactionR.commit();
         }
         else if(information == "old")
@@ -39,7 +42,25 @@ public class Dashboard extends AppCompatActivity implements Communicator {
             LoginFragment loginFragment = new LoginFragment();
             FragmentTransaction transactionL =fragmentManager.beginTransaction();
             transactionL.replace(R.id.dashBoard,loginFragment,"login");
+            transactionL.addToBackStack("login");
             transactionL.commit();
+        }
+        else if (information == "child")
+        {
+            ChildRegistrationFragment childRegistrationFragment = new ChildRegistrationFragment();
+            FragmentTransaction transactionC = fragmentManager.beginTransaction();
+            transactionC.replace(R.id.dashBoard,childRegistrationFragment,"childRegistration");
+            transactionC.addToBackStack("childRegistration");
+            transactionC.commit();
+        }
+        else if (information == "women")
+        {
+            WomenRegistrationFragments womenRegistrationFragments = new WomenRegistrationFragments();
+            FragmentTransaction transactionW = fragmentManager.beginTransaction();
+            transactionW.replace(R.id.dashBoard,womenRegistrationFragments,"womenRegistration");
+            transactionW.addToBackStack("womenRegistration");
+            transactionW.commit();
+
         }
 
     }
